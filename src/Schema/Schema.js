@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
-const DB_URI =
-  "mongodb+srv://talhakothiwale:SomeSecurePass2024@t-cluster0.tslsnfq.mongodb.net/MyQuizz-app";
-const colors = require("colors");
-
+require("dotenv").config({ path: "./config.env" });
+const DB_URI = process.env.DATABASE_URI;
 mongoose.connect(DB_URI, {}).then(() => console.log("Connected to DB".green));
 
 const UserSchema = new mongoose.Schema(
