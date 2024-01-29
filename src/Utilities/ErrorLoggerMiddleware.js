@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const logsDirectory = path.join(__dirname, '../Logs');
+
+const logsDirectory = path.join(__dirname, './Logs');
 const logFilePath = path.join(logsDirectory, 'ErrorLogs.log');
 
 const errorLoggerMiddleware = (err, req, res, next) => {
@@ -10,6 +11,8 @@ const errorLoggerMiddleware = (err, req, res, next) => {
     fs.appendFile(logFilePath, logMessage, (fileErr) => {
         if (fileErr) {
             console.error('Error writing to error log:', fileErr);
+        }else{
+            console.log("Error Logged Successfully in errorLoggerMiddleware")
         }
     });
 
