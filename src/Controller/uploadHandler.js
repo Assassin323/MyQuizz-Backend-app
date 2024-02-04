@@ -1,7 +1,6 @@
+// uploadHandler.js
 const express = require("express");
 const multer = require("multer");
-const router = express.Router();
-const path = require("path");
 const { FileModel } = require("../Schema/Schema");
 
 const storage = multer.memoryStorage();
@@ -15,18 +14,23 @@ const handleUpload = async (req, res, next) => {
         message: "No File Uploaded",
       });
     }
-    const newFileUpload = new FileModel({
+    // Read HTML content from the uploaded file buffer
+    const fileContent = req.file.buffer.toString("utf-8");
 
+    const newFileUpload = new FileModel({
       fileName: req.file.originalname,
       fileType: req.file.mimetype,
       fileData: req.file.buffer,
+      path: req.file.originalname, // Use the filename as the default path
+      fileContent: fileContent,
     });
-
+    // const uniqueId = Date.now().toString();
     const savedFiles = await newFileUpload.save();
     return res.status(200).json({
       success: true,
       message: "File uploaded successfully",
       fileId: savedFiles._id,
+      path: savedFiles.path,
     });
   } catch (error) {
     console.error("File upload failed", error);

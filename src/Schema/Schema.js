@@ -41,6 +41,8 @@ const fileSchema = mongoose.Schema(
     fileType: String,
     uploadDate: { type: Date, default: Date.now },
     fileData: Buffer,
+    path: String, // Add this field
+    fileContent: String,
   },
   {
     timestamps: true,
