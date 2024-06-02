@@ -1,7 +1,7 @@
 // routing.js
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');  // Import Multer here
+const multer = require('multer');
 const handleUpload = require('../Controller/uploadHandler');
 const registerHandler = require('../Controller/RegisterHandler');
 const loginHandler = require('../Controller/LoginHandler');
