@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 
-const logsDirectory = path.join(__dirname, './Logs');
-const logFilePath = path.join(logsDirectory, 'ErrorLogs.log');
+const logsDirectory = path.join(__dirname, '../../Logs');
+const logFilePath = path.join(logsDirectory, 'ErrorLogger.log');
 
 const errorLoggerMiddleware = (err, req, res, next) => {
     console.error("<errorLoggerMiddleware>", err);
